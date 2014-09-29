@@ -1,4 +1,4 @@
-!!! OPEN SOURCE VERSION !!!
+---OPEN-SOURCE-VERSION---
 config/settings_brocade.py
 config/settings_cml.py
 config/settings_emc.py
