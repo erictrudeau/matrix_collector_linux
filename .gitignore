@@ -1,6 +1,14 @@
 ---OPEN-SOURCE-VERSION---
 config/settings_brocade.py
 config/settings_cml.py
-config/settings_emc.py
+config/settings_emc_vnx_block.py
+config/settings_emc_vnx_file.py
+config/settings_mitrend.py
 config/settings_secure.py
-keys/*
+
+/keys/*
+/tmp/
+
+*.db
+*.sqlite
+*initial_data*.json
