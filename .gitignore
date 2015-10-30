@@ -8,6 +8,7 @@ config/settings_secure.py
 
 /keys/*
 /tmp/
+/venv/
 
 *.db
 *.sqlite
