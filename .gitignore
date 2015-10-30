@@ -13,3 +13,4 @@ config/settings_secure.py
 *.db
 *.sqlite
 *initial_data*.json
+.DS_Store
