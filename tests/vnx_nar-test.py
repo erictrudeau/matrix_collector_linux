@@ -13,10 +13,9 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'config.settings'
 from django.conf import settings
 from django.utils import timezone
 
-from functions.logger import logger_init
+from lib.logger import logger_init
 
-from functions import *
-from functions import emc_vnx_block
+from emc_vnx import collectors
 
 logger = logger_init('matrix.collector.linux.emc_vnx_block')
 
@@ -28,6 +27,12 @@ dir_output = os.path.join(settings.LOG_ARCHIVE_BASE_DIR, collector + '__%s')
 # loop over frames to download files
 for frame,config in settings.EMC_VNX_BLOCK_FRAMES.items():
 
+	logger.debug('config:%s' % config)
+
+	collectors.analyzer_list(config)
+
+
+'''
 	###
 	### NAR
 	###
@@ -39,8 +44,9 @@ for frame,config in settings.EMC_VNX_BLOCK_FRAMES.items():
 	logger.info('retrieving files from %s' % config['name'])
 
 	# list nar files
-	nar_list = emc_vnx_block.nar_list(config)
+	nar_list = emc_vnx_block.analyzer_list(config)
 	logger.debug('nar_list:%s' % nar_list)
+
 
 	# loop over nar file list
 	for file in nar_list:
@@ -84,3 +90,4 @@ for frame,config in settings.EMC_VNX_BLOCK_FRAMES.items():
 			emc_vnx_block.managefiles_retrieve(config, file['filename'], spcollect_dir_output)
 
 	logger.info('sp collect retrieval complete.')
+'''

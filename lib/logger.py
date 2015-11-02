@@ -9,7 +9,8 @@ import logging.handlers
 from django.conf import settings
 
 
-def logger_init(name='matrix', level_name='INFO', console=False):
+def logger_init(name=settings.LOGGING_DEFAULT_NAME, level_name=settings.LOGGING_LEVEL, console=settings.LOGGING_CONSOLE):
+#def logger_init(name='matrix', level_name='DEBUG', console=True):
 
 	# get logger
 	logger = logging.getLogger(name)
@@ -21,7 +22,7 @@ def logger_init(name='matrix', level_name='INFO', console=False):
 		error_set_level = False
 
 	# except on attribute error (logging level not found), then set to INFO and set flag to log the error after logging initialized later
-	except AttributeError, error_set_level_e:
+	except AttributeError as error_set_level_e:
 		logging_level = logging.INFO
 		logger.setLevel(logging_level)
 		error_set_level = True

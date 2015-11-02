@@ -10,18 +10,22 @@ if __name__ == "__main__":
 
 from django.conf import settings
 
+from lib.logger import logger_init
+
 from fabric.api import local  #, cd, run, env, sudo
 from fabric.context_managers import settings as fab_settings
 
 
+logger = logger_init('matrix.collector.linux.functions.fab')
+
 def fab_run_local(cmd):
-	if settings.DEBUG:
-		print cmd
-		return
+	logger.debug('fab_run_local  cmd: %s' % cmd)
 
-	else:
-		with fab_settings(warn_only=True):
-			# run command
-			return local(cmd)
+	with fab_settings(warn_only=True):
+		# run command
+		r = local(cmd)
 
+		# log output
+		logger.debug('fab_run_local  output: %s' % r)
 
+		return r
