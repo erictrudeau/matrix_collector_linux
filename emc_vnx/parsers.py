@@ -30,7 +30,7 @@ def analyzer_list(raw):
 		r.append({
 			'index'		: row[0],
 			'size_kb'	: row[1],
-			'modified'	: datetime.datetime.strptime(row[2],'%m/%d/%y %H:%M:%S'),
+			'modified'	: datetime.datetime.strptime(row[2],'%m/%d/%Y %H:%M:%S'),
 			'filename'	: row[3],
 		})
 
