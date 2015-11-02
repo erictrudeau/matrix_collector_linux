@@ -15,7 +15,8 @@ from django.utils import timezone
 
 from lib.logger import logger_init
 
-from emc_vnx import collectors
+from emc_vnx import collectors as vnx_collectors
+from emc_vnx import parsers as vnx_parsers
 
 logger = logger_init('matrix.collector.linux.emc_vnx_block')
 
@@ -29,10 +30,7 @@ for frame,config in settings.EMC_VNX_BLOCK_FRAMES.items():
 
 	logger.debug('config:%s' % config)
 
-	collectors.analyzer_list(config)
 
-
-'''
 	###
 	### NAR
 	###
@@ -44,28 +42,34 @@ for frame,config in settings.EMC_VNX_BLOCK_FRAMES.items():
 	logger.info('retrieving files from %s' % config['name'])
 
 	# list nar files
-	nar_list = emc_vnx_block.analyzer_list(config)
-	logger.debug('nar_list:%s' % nar_list)
+	nar_list_raw = vnx_collectors.analyzer_list(config)
+	logger.debug('nar_list_raw:%s' % nar_list_raw)
 
+
+	# parse nar list
+	nar_list = vnx.parsers.analyzer_list(nar_list_raw)
 
 	# loop over nar file list
-	for file in nar_list:
-		logger.debug('file:%s' % file)
+	for f in nar_list:
+		logger.debug('file:%s' % f)
 
-		# file['size_kb']
-		# file['filename']
-		# file['modified']
+		# f['size_kb']
+		# f['size_mb'] = f['size_kb'] / 1024
+		# f['filename']
+		# f['modified']
 
 		# check if file exists
 
 
 
 		# download
-		dir_output_nar = dir_output % 'nar'
-		emc_vnx_block.analyzer_retrieve(config, file['filename'], analyzer_dir_output)
+#		dir_output_nar = dir_output % 'nar'
+#		emc_vnx_block.analyzer_retrieve(config, file['filename'], analyzer_dir_output)
+
 
 	logger.info('nar retrieval complete.')
 
+'''
 
 	###
 	### SP COLLECT
