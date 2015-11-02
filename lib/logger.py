@@ -9,8 +9,8 @@ import logging.handlers
 from django.conf import settings
 
 
-def logger_init(name=settings.LOGGING_DEFAULT_NAME, level_name=settings.LOGGING_LEVEL, console=settings.LOGGING_CONSOLE):
-#def logger_init(name='matrix', level_name='DEBUG', console=True):
+#def logger_init(name=settings.LOGGING_DEFAULT_NAME, level_name=settings.LOGGING_LEVEL, console=settings.LOGGING_CONSOLE):
+def logger_init(name='matrix', level_name='DEBUG', console=False):
 
 	# get logger
 	logger = logging.getLogger(name)
