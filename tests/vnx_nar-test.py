@@ -47,7 +47,7 @@ for frame,config in settings.EMC_VNX_BLOCK_FRAMES.items():
 
 
 	# parse nar list
-	nar_list = vnx.parsers.analyzer_list(nar_list_raw)
+	nar_list = vnx_parsers.analyzer_list(nar_list_raw)
 
 	# loop over nar file list
 	for f in nar_list:

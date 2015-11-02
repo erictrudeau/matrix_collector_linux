@@ -14,7 +14,7 @@ from lib.regex import re_find
 logger = logger_init('matrix.collector.linux.emc_vnx_block')
 
 
-def analyzer_list_parse(raw):
+def analyzer_list(raw):
 	''' 
 	Index Size in KB     Last Modified            Filename
 	0     157860    08/13/2015 21:42:25  APM00000001234_SPA_2015-08-14_02-38-46-GMT_M06-00.nar
