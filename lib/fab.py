@@ -23,7 +23,7 @@ def fab_run_local(cmd):
 
 	with fab_settings(warn_only=True):
 		# run command
-		r = local(cmd)
+		r = local(cmd, capture=True)
 
 		# log output
 		logger.debug('fab_run_local  output: %s' % r)
